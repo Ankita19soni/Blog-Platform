@@ -1,0 +1,27 @@
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "5000:5000"
+    environment:
+      - USER_DB_URI=sqlite:///users.db  # Update to use SQLite
+    volumes:
+      - ./user-service/users.db:/app/users.db  # Mount the SQLite file as a volume
+
+  blog-service:
+    build: ./blog-service
+    ports:
+      - "5001:5001"
+    environment:
+      - BLOG_DB_URI=sqlite:///blogs.db  # Update to use SQLite
+    volumes:
+      - ./blog-service/blogs.db:/app/blogs.db  # Mount the SQLite file as a volume
+
+  comment-service:
+    build: ./comment-service
+    ports:
+      - "5002:5002"
+    environment:
+      - COMMENT_DB_URI=sqlite:///comments.db  # Update to use SQLite
+    volumes:
+      - ./comment-service/comments.db:/app/comments.db  # Mount the SQLite file as a volume
